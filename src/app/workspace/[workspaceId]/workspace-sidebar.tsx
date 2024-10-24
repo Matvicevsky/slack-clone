@@ -14,6 +14,7 @@ import { useCreateChannelModal } from '@/features/channels/store/use-create-chan
 
 import { useWorkspaceId } from '@/hooks/use-workspace-id'
 import { useChannelId } from '@/hooks/use-channel-id'
+import { useMemberId } from '@/hooks/use-member-id'
 
 import { WorkspaceHeader } from './workspace-header'
 import { SidebarItem } from './sidebar-item'
@@ -21,6 +22,7 @@ import { WorkspaceSection } from './workspace-section'
 import { UserItem } from './user-item'
 
 export const WorkspaceSidebar = () => {
+	const memberId = useMemberId()
 	const workspaceId = useWorkspaceId()
 	const channelId = useChannelId()
 
@@ -91,6 +93,7 @@ export const WorkspaceSidebar = () => {
 						id={item._id}
 						label={item.user.name}
 						image={item.user.image}
+						variant={item._id === memberId ? 'active' : 'default'}
 					/>
 				))}
 			</WorkspaceSection>

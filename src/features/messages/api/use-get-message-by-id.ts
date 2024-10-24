@@ -3,12 +3,12 @@ import { useQuery } from 'convex/react'
 import { api } from '../../../../convex/_generated/api'
 import { Id } from '../../../../convex/_generated/dataModel'
 
-interface UseGetMembersProps {
-	workspaceId: Id<'workspaces'>
+interface UseGetMessageByIdProps {
+	id: Id<'messages'>
 }
 
-export const useGetMembers = ({ workspaceId }: UseGetMembersProps) => {
-	const data = useQuery(api.members.get, { workspaceId })
+export const useGetMessageById = ({ id }: UseGetMessageByIdProps) => {
+	const data = useQuery(api.messages.getById, { id })
 
 	const isLoading = data === undefined
 
