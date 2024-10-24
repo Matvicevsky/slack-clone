@@ -47,9 +47,7 @@ export const InviteModal = ({
 			{ workspaceId },
 			{
 				onSuccess: () => {
-					toast.success('Invite code regenerated', {
-						style: { backgroundColor: 'white' },
-					})
+					toast.success('Invite code regenerated')
 				},
 				onError: () => {
 					toast.error('Failed to regenerate invite code', {
@@ -63,11 +61,9 @@ export const InviteModal = ({
 	const handleCopy = () => {
 		const inviteLink = `${window.location.origin}/join/${workspaceId}`
 
-		navigator.clipboard.writeText(inviteLink).then(() =>
-			toast.success('invite link copied to clipboard', {
-				style: { backgroundColor: 'white' },
-			})
-		)
+		navigator.clipboard
+			.writeText(inviteLink)
+			.then(() => toast.success('invite link copied to clipboard'))
 	}
 
 	return (

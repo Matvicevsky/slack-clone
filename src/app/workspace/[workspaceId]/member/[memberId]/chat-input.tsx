@@ -6,7 +6,7 @@ import { useCreateMessage } from '@/features/messages/api/use-create-message'
 import { useGenerateUploadUrl } from '@/features/upload/api/use-generate-upload-url'
 
 import { useWorkspaceId } from '@/hooks/use-workspace-id'
-import { useChannelId } from '@/hooks/use-channel-id'
+
 import { Id } from '../../../../../../convex/_generated/dataModel'
 
 const Editor = dynamic(() => import('@/components/editor'), {
@@ -15,23 +15,23 @@ const Editor = dynamic(() => import('@/components/editor'), {
 
 interface ChatInputProps {
 	placeholder: string
+	conversationId: Id<'conversations'>
 }
 
 type CreateMessageValues = {
-	channelId: Id<'channels'>
+	conversationId: Id<'conversations'>
 	workspaceId: Id<'workspaces'>
 	body: string
 	image: Id<'_storage'> | undefined
 }
 
-export const ChatInput = ({ placeholder }: ChatInputProps) => {
+export const ChatInput = ({ placeholder, conversationId }: ChatInputProps) => {
 	const [editorKey, setEditorKey] = useState(0)
 	const [isPending, setIsPending] = useState(false)
 
 	const editorRef = useRef<Quill | null>(null)
 
 	const workspaceId = useWorkspaceId()
-	const channelId = useChannelId()
 
 	const { mutate: createMessage } = useCreateMessage()
 	const { mutate: generateUploadUrl } = useGenerateUploadUrl()
@@ -48,7 +48,7 @@ export const ChatInput = ({ placeholder }: ChatInputProps) => {
 			editorRef.current?.enable(false)
 
 			const values: CreateMessageValues = {
-				channelId,
+				conversationId,
 				workspaceId,
 				body,
 				image: undefined,
