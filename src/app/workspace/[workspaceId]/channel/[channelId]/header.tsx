@@ -66,15 +66,11 @@ export const Header = ({ title }: HeaderProps) => {
 			{ id: channelId, name: value },
 			{
 				onSuccess: () => {
-					toast.success('Channel updated', {
-						style: { backgroundColor: 'white' },
-					})
+					toast.success('Channel updated')
 					setEditOpen(false)
 				},
 				onError: () => {
-					toast.error('Failed to update channel', {
-						style: { backgroundColor: 'white' },
-					})
+					toast.error('Failed to update channel')
 				},
 			}
 		)
@@ -88,15 +84,11 @@ export const Header = ({ title }: HeaderProps) => {
 			{ id: channelId },
 			{
 				onSuccess: () => {
-					toast.success('Channel removed', {
-						style: { backgroundColor: 'white' },
-					})
+					toast.success('Channel removed')
 					router.push(`/workspace/${workspaceId}`)
 				},
 				onError: () => {
-					toast.error('Failed to remove channel', {
-						style: { backgroundColor: 'white' },
-					})
+					toast.error('Failed to remove channel')
 				},
 			}
 		)
